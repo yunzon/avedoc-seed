@@ -1,0 +1,29 @@
+trigger:
+- master
+- az-devops
+
+pool:
+  vmImage: windows-2019
+
+steps:
+- powershell: |
+    choco install docfx -y
+    docfx docfx.json
+    if ($lastexitcode -ne 0){
+      throw ("Error generating document")
+    }
+  displayName: "docfx build"
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '_site'
+    ArtifactName: 'publish_sites'
+    publishLocation: 'Container'
+
+- task: AzureFileCopy@3
+  inputs:
+    SourcePath: '_site'
+    azureSubscription: 'Dev_SAAS_Sean.Zhang(6611c6a2-cd5e-46a1-aefe-9d8bc5e1c6cb)'
+    Destination: 'AzureBlob'
+    storage: 'seanpipe'
+    ContainerName: '$web'
