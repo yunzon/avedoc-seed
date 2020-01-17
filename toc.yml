@@ -1,0 +1,9 @@
+﻿- name: AveDocs
+  href: index.md
+- name: User Guide
+  href: articles/
+  homepage: articles/about-the-fly-user-guide.md
+- name: API Documentation
+  href: obj/api/
+- name: REST API
+  href: restapi/
