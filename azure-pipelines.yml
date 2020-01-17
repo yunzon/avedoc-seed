@@ -22,7 +22,7 @@ steps:
 
 - task: AzureFileCopy@3
   inputs:
-    SourcePath: 'copy_sites'
+    SourcePath: '_sites'
     azureSubscription: 'Dev_SAAS_Sean.Zhang(6611c6a2-cd5e-46a1-aefe-9d8bc5e1c6cb)'
     Destination: 'AzureBlob'
     storage: 'seanpipe'
